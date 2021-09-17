@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'ui/home_page.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initHiveForFlutter();
+  final HttpLink httpLink = HttpLink(
+    'http://localhost:5000/graphql',
+  );
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: httpLink,
+      cache: GraphQLCache(store: HiveStore()),
+    ),
+  );
+  runApp(GraphQLProvider(client: client, child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
