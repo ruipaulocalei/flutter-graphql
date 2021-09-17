@@ -32,27 +32,33 @@ class HomePage extends StatelessWidget {
               // it can be either Map or List
               List projects = result.data!['projects'];
 
-              return ListView.builder(
-                  itemCount: projects.length,
-                  itemBuilder: (context, index) {
-                    final project = projects[index];
+              return projects.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: projects.length,
+                      itemBuilder: (context, index) {
+                        final project = projects[index];
 
-                    return Card(
-                      elevation: 8,
-                      child: ListTile(
-                        title: Text(
-                          project['title'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(
-                          project['description'],
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        trailing: Text(project['id'],
-                            overflow: TextOverflow.ellipsis),
+                        return Card(
+                          elevation: 8,
+                          child: ListTile(
+                            title: Text(
+                              project['title'],
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              project['description'],
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            trailing: Text(project['id'],
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                        );
+                      })
+                  : Container(
+                      child: Center(
+                        child: Text('No projects. Create One'),
                       ),
                     );
-                  });
             }));
   }
 }
