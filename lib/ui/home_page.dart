@@ -49,8 +49,16 @@ class HomePage extends StatelessWidget {
                               project['description'],
                               overflow: TextOverflow.ellipsis,
                             ),
-                            trailing: Text(project['id'],
-                                overflow: TextOverflow.ellipsis),
+                            // trailing: Expanded(
+                            //   child: Row(
+                            //     children: [
+                            //       InkWell(
+                            //         child: Icon(Icons.edit),
+                            //         onTap: () {},
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
                           ),
                         );
                       })
