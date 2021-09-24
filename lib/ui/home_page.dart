@@ -42,28 +42,49 @@ class HomePage extends StatelessWidget {
                         final project = projectList[index];
 
                         return Card(
-                          elevation: 8,
-                          child: ListTile(
-                            title: Text(
-                              project.title,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              project.description,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            // trailing: Expanded(
-                            //   child: Row(
-                            //     children: [
-                            //       InkWell(
-                            //         child: Icon(Icons.edit),
-                            //         onTap: () {},
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
-                          ),
-                        );
+                            elevation: 8,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        project.title,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                              child: Icon(Icons.edit),
+                                              onTap: () {},
+                                            ),
+                                            SizedBox(
+                                              width: 8,
+                                            ),
+                                            InkWell(
+                                              child: Icon(Icons.delete),
+                                              onTap: () {},
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    project.description,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ));
                       })
                   : Container(
                       child: Center(
