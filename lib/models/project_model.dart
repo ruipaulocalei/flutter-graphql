@@ -1,24 +1,21 @@
-import 'dart:convert';
+class Projects {
+  String id = '';
+  String title = '';
+  String description = '';
 
-Project projectFromJson(String str) => Project.fromJson(jsonDecode(str));
-String projectToJson(Project data) => jsonEncode(data.toJson());
+  Projects({required this.id, required this.title, required this.description});
 
-class Project {
-  String? id;
-  String? title;
-  String? description;
+  Projects.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+  }
 
-  Project({this.id, this.title, this.description});
-
-  factory Project.fromJson(Map<String, dynamic> json) => Project(
-        id: json['id'],
-        title: json['title'],
-        description: json['description'],
-      );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'description': description,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    return data;
+  }
 }

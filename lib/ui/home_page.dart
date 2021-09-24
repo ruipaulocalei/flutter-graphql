@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_crud/models/project_model.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class HomePage extends StatelessWidget {
@@ -31,22 +32,24 @@ class HomePage extends StatelessWidget {
 
               // it can be either Map or List
               List projects = result.data!['projects'];
+              final projectList =
+                  projects.map((e) => Projects.fromJson(e)).toList();
 
-              return projects.isNotEmpty
+              return projectList.isNotEmpty
                   ? ListView.builder(
-                      itemCount: projects.length,
+                      itemCount: projectList.length,
                       itemBuilder: (context, index) {
-                        final project = projects[index];
+                        final project = projectList[index];
 
                         return Card(
                           elevation: 8,
                           child: ListTile(
                             title: Text(
-                              project['title'],
+                              project.title,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
-                              project['description'],
+                              project.description,
                               overflow: TextOverflow.ellipsis,
                             ),
                             // trailing: Expanded(
